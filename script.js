@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   var apiRoot = 'https://quiet-harbor-55542.herokuapp.com/v1/task/';
   var datatableRowTemplate = $('[data-datatable-row-template]').children()[0];
-  var $tasksContainer = $('[data-tasks-container]');
+  var tasksContainer = $('[data-tasks-container]');
 
   // init
   getAllTasks();
@@ -22,7 +22,7 @@ $(document).ready(function() {
 
   function handleDatatableRender(data) {
     tasksContainer.empty();
-    boards.forEach(function(task) {
+    data.forEach(function(task) {
       createElement(task).appendTo(tasksContainer);
     });
   }
@@ -119,8 +119,8 @@ $(document).ready(function() {
 
   $('[data-task-add-form]').on('submit', handleTaskSubmitRequest);
 
-  $tasksContainer.on('click','[data-task-edit-button]', toggleEditingState);
-  $tasksContainer.on('click','[data-task-edit-abort-button]', toggleEditingState);
-  $tasksContainer.on('click','[data-task-submit-update-button]', handleTaskUpdateRequest);
-  $tasksContainer.on('click','[data-task-delete-button]', handleTaskDeleteRequest);
+  tasksContainer.on('click','[data-task-edit-button]', toggleEditingState);
+  tasksContainer.on('click','[data-task-edit-abort-button]', toggleEditingState);
+  tasksContainer.on('click','[data-task-submit-update-button]', handleTaskUpdateRequest);
+  tasksContainer.on('click','[data-task-delete-button]', handleTaskDeleteRequest);
 });
